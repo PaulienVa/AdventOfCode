@@ -6,9 +6,7 @@ object CheckSum {
     fun evenDividable (linesTable: List<String>) : Int = linesTable.checksum(quotient)
 
     private fun List<String>.checksum(calculationMethod: (String) -> Int): Int {
-        return this
-                .map {calculationMethod (it)}
-                .sum()
+        return this.map {calculationMethod (it)}.sum()
     }
 
     private val minMax: (it: String) -> Int = {
