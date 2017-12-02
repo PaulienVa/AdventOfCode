@@ -3,7 +3,7 @@ package com.paulienvanalst.adventofcode
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 
-class PartOneTest {
+class D1P1Test {
 
     @Test
     fun `sum of 1122 produces 3 as there are two neighbours`(){
@@ -34,7 +34,7 @@ class PartOneTest {
 
 }
 
-class PartTwoTest {
+class D1P2Test {
 
     @Test
     fun `1212 produces 6`() {
