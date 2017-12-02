@@ -15,9 +15,9 @@ object CheckSum {
     }
 
     private val quotient: (it: String) -> Int = {
-        val line = it.mapToIntList().sortedDescending()
+        val line = it.mapToIntList()
         val evenDivision = line.flatMap {
-            (line - it).filter { rest -> it % rest == 0  || rest % it == 0}
+            (line - it).filter { rest -> it % rest == 0  || rest % it == 0 }
         }
         evenDivision.max()!! / evenDivision.min()!!
     }
