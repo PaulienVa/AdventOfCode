@@ -5,13 +5,11 @@ object Captcha {
 
     fun calculateInverse(input: String): Int {
         return captcha(input.toIntegerList(), 1)
-
     }
 
     fun calculateCircular(input: String): Int {
         return captcha(input.toIntegerList(), input.length / 2)
     }
-
 
     private fun captcha(values: List<Int>, stepSize: Int): Int {
         return values.mapIndexed { index, number ->
