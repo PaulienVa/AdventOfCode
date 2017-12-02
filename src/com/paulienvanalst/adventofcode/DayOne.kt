@@ -4,21 +4,33 @@ package com.paulienvanalst.adventofcode
 object InverseCaptcha {
 
     fun calculate(input: String): Int {
-        return sumTheNeighbours(input.iterator(), determineStartSum(input), "")
+        val values = input.toCharArray().map { Integer.valueOf(it.toString()) }
+        return determineSum(values.iterator(), IntermediateHash(0, initialAccumulator(values)))
     }
 
-    private fun sumTheNeighbours(input: CharIterator, sum: Int, previousChar: String): Int {
-        if (input.hasNext()){
-            val nextChar = input.nextChar().toString()
-            compareTwoCharAndDetermineSum(previousChar, nextChar, sum)
-            return sumTheNeighbours(input, sum, nextChar)
+    private fun initialAccumulator(values: List<Int>): Int {
+        if (values.first() == values.last()) {
+            return values.first()
         }
-        return sum
+        return 0
     }
 
-    private fun compareTwoCharAndDetermineSum(previousChar: String, nextChar: String, sum: Int): Integer {
-        if (previousChar == nextChar) {
-            return Integer.valueOf(previousChar) + Integer.valueOf(nextChar)
+    private fun determineSum(values: Iterator<Int>, previousHash: IntermediateHash): Int {
+        if (values.hasNext()) {
+            val nextValue = values.next()
+            if (nextValue == previousHash.previousValue) {
+                return determineSum(values, IntermediateHash(nextValue, previousHash.acc + nextValue))
+            }
+            return determineSum(values, IntermediateHash(nextValue, previousHash.acc))
+
         }
+
+        return previousHash.acc
+
     }
+
+    data class IntermediateHash(val previousValue: Int, val acc: Int)
+
+
+
 }

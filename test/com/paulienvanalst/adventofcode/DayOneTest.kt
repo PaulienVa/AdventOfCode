@@ -26,7 +26,10 @@ class DayOneTest {
         assertEquals(0, InverseCaptcha.calculate("1234"))
     }
 
-
+    @Test
+    fun ` my own inverse captcha ` () {
+        println(InverseCaptcha.calculate(mycaptcha))
+    }
 
 }
 
