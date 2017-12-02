@@ -4,14 +4,12 @@ package com.paulienvanalst.adventofcode
 object Captcha {
 
     fun calculateInverse(input: String): Int {
-        val values = input.toCharArray().map { Integer.valueOf(it.toString()) }
-        return captcha(values, 1)
+        return captcha(input.toIntegerList(), 1)
 
     }
 
     fun calculateCircular(input: String): Int {
-        val values = input.toCharArray().map { Integer.valueOf(it.toString()) }
-        return captcha(values, input.length / 2)
+        return captcha(input.toIntegerList(), input.length / 2)
     }
 
 
@@ -20,6 +18,8 @@ object Captcha {
             if (values[(index + stepSize) % values.size] == number) number else 0
         }.sum()
     }
+
+    private fun String.toIntegerList() : List<Int> = this.toCharArray().map { Integer.valueOf(it.toString()) }
 }
 
 
