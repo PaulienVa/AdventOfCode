@@ -29,10 +29,28 @@ class DayFourTest {
     }
 
     @Test
-    fun `my input` () {
+    fun `my input part one` () {
         val lines = File(ClassLoader.getSystemResource("input/DayFour_PartOne.txt").file).readLines()
-
         assertEquals(383, PassPhrase.countValidLines(lines))
+    }
+
+    @Test
+    fun `anagram does not show in sentence` () {
+        assertTrue(AnagramParaphrase.isValid("abcde fghij"))
+        assertTrue(AnagramParaphrase.isValid("a ab abc abd abf abj"))
+        assertTrue(AnagramParaphrase.isValid("iiii oiii ooii oooi oooo"))
+    }
+
+    @Test
+    fun `anagram shows in sentence and makes it invalid` () {
+        assertFalse(AnagramParaphrase.isValid("abcde xyz ecdab"))
+        assertFalse(AnagramParaphrase.isValid("oiii ioii iioi iiio"))
+    }
+
+    @Test
+    fun `my input part two` () {
+        val lines = File(ClassLoader.getSystemResource("input/DayFour_PartTwo.txt").file).readLines()
+        assertEquals(265, lines.filter { AnagramParaphrase.isValid(it) }.count())
     }
 
 }
